@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/character_creation.css' %}">
+    
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="d-inline-flex flex-column mb-3"></div>
+        <form action="/createcharacter" method='post'>
+            {% csrf_token %}
+            <div class="form-group box">
+                <div class="form-group">
+                    <h3>Create a character</h3>
+                </div>
+                <label for="character_name">Character Name:</label>
+                <input type="text" class="form-control mb-3" id="character_name" name="character_name">
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.extra_tags == 'character_name' %}
+                <small id="passwordHelpBlock" class="form-text text-danger">{{ message }}</small>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                <select id="selectclass" name="form_select" class="form-select form-select-sm mb-3"
+                    aria-label=".form-select-sm example">
+                    <option selected>Select A class</option>
+                    <option value="knight">Knight</option>
+                    <option value="rogue">Rogue</option>
+                    <option value="mage">Mage</option>
+                </select>
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.extra_tags == 'form_select' %}
+                <small id="passwordHelpBlock" class="form-text text-danger">{{ message }}</small>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                <div class="form-group">
+                    <!-- <div class="element">
+                        <img src="{% static './img/knight_standing.png' %}" alt="knight walking"> 
+                    </div> -->
+                    <div id="knight">
+                        <img id = "sprite" class="character_spritesheet pixelart" src="{% static './img/knight_spritesheet2.png' %}"
+                            alt="Knight">
+                            <p>Knight Selected</p>
+                    </div>
+                    <!-- DIV FOR KNIGHT STATS -->
+                    <div id="knight_stats">
+                        <p>Knight's Stats</p>
+                        <table class="table-responsive-sm table-sm">
+                            <tbody>
+                                <tr>
+                                    <td>Health Points:</td>
+                                    <td>15</td>
+                                </tr>
+                                <tr>
+                                    <td>Attack Power:</td>
+                                    <td>3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+
+
+
+                    <div id="rogue">
+                        <img id = "sprite" class="character_spritesheet pixelart" src="{% static './img/rogue_walking.png' %}"
+                            alt="rogue">
+                    </div>
+                    <!-- DIV FOR ROGUE STATS -->
+                    <div id="rogue_stats">
+                        <p>Rogue's Stats</p>
+                        <table class="table-responsive-sm table-sm">
+                            <tbody>
+                                <tr>
+                                    <td>Health Points:</td>
+                                    <td>11</td>
+                                </tr>
+                                <tr>
+                                    <td>Attack Power:</td>
+                                    <td>5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div id="mage">
+                        <img id = "sprite" class="character_spritesheet pixelart" src="{% static './img/mage_walking.png' %}"
+                            alt="Knight">
+                    </div>
+
+                    <!-- DIV FOR MAGE STATS -->
+                    <div id="mage_stats">
+                        <p>Mage's Stats</p>
+                        <table class="table-responsive-sm table-sm">
+                            <tbody>
+                                <tr>
+                                    <td>Health Points:</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>Attack Power:</td>
+                                    <td>10</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type = "submit">Create Character</button>
+                    
+                        
+
+
+
+                </div>
+
+            </div>
+
+
+
+        </form>
+    </div>
+    <script src="{% static 'javascript/scripts.js' %}"></script>
+</body>
+
+</html>

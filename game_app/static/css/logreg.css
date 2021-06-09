@@ -1,0 +1,60 @@
+body{
+    background-image: url("/static/img/coolbackground.png"), url("/static/img/coolbackground2.png");
+    animation: slide 4s infinite linear;
+    align-items:center;
+    justify-content:center;
+}
+.container{
+    margin: auto;
+
+    align-items:center;
+    justify-content: center;
+}
+@keyframes slide {
+    from {
+	    background-position: 0 0, 30px 30px;
+    }
+
+    to {
+	    background-position: 0 0, -30px -30px;
+    }
+}
+
+.box {
+	min-width:5em;
+	display:inline-block;
+	position:relative;
+	vertical-align:top;
+	background-color: #280828;
+	color:#e7e6b3;
+	padding:5px 3px;
+	border-radius:1px;
+	transform:translateY(0);
+	transition: transform linear 150ms;
+    box-shadow:
+        0 0 0 5px #383050, /* dark grey */
+        0 0 0 10px #68d0b8, /* minty blue */
+		0 0 0 12px #f7e8a8, /* white */
+		0 0 0 15px #3d3c55; /* black */
+}
+/* BUTTONS */
+button {
+    position:relative;
+    cursor:pointer;
+    background:transparent;
+    border:0;
+    color:#e7e6b3;
+    font-size:1em;
+}
+
+button:hover::before {
+	content:'';
+	position:absolute;
+	left:-0.3em;
+	top:0.4em;
+    width: 0; 
+    height: 0; 
+    border-top: 0.3rem solid transparent;
+    border-bottom: 0.3rem solid transparent;
+    border-left: 0.3rem solid #e7e6b3;
+}
